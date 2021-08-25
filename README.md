@@ -7,6 +7,7 @@
 ```bash
 git clone https://gitlab.com/iterative.ai/cse/tutorials/course-ds-base.git
 cd course-ds-base
+git checkout step-1
 ```
 
 
