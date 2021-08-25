@@ -1,0 +1,13 @@
+# IDEs
+.idea
+.vscode
+
+## OS configs
+.DS_Store
+
+# Python
+__pycache__
+.ipynb_checkpoints
+
+# Venv
+dvc-venv
