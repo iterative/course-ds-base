@@ -7,7 +7,7 @@
 ```bash
 git clone https://gitlab.com/iterative.ai/cse/tutorials/course-ds-base.git
 cd course-ds-base
-git checkout step-1
+git checkout step-3
 ```
 
 
@@ -16,6 +16,7 @@ git checkout step-1
 Create virtual environment named `dvc-venv` (you may use other name)
 ```bash
 python3 -m venv dvc-venv
+echo "export PYTHONPATH=$PWD" >> dvc-venv/bin/activate
 source dvc-venv/bin/activate
 ```
 Install python libraries
