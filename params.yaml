@@ -1,0 +1,45 @@
+
+base:
+  random_state: 42
+  log_level: INFO
+
+
+data_load:
+  dataset_csv: 'data/raw/iris.csv'
+
+
+featurize:
+  features_path: 'data/processed/featured_iris.csv'
+  target_column: target
+
+
+data_split:
+  test_size: 0.2
+  trainset_path: 'data/processed/train_iris.csv'
+  testset_path: 'data/processed/test_iris.csv'
+
+
+train:
+
+  cv: 3
+  estimator_name: logreg
+  estimators:
+    logreg: # sklearn.linear_model.LogisticRegression
+      param_grid: # params of GridSearchCV constructor
+        C: [0.001]
+        max_iter: [100]
+        solver: ['lbfgs']
+        multi_class: ['multinomial']
+    svm: # sklearn.svm.SVC
+      param_grid:
+        C: [0.1, 1.0]
+        kernel: ['rbf', 'linear']
+        gamma: ['scale']
+        degree: [3, 5]
+  model_path: models/model.joblib
+
+
+evaluate:
+  reports_dir: reports
+  metrics_file: 'metrics.json'
+  confusion_matrix_image: 'confusion_matrix.png'
