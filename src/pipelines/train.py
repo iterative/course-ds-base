@@ -23,21 +23,16 @@ def train_model(config_path: Text) -> None:
     estimator_name = config['train']['estimator_name']
     logger.info(f'Estimator: {estimator_name}')
 
-    logger.info('Get estimator parameters')
-    param_grid = config['train']['estimators'][estimator_name]['param_grid']
-    cv = config['train']['cv']
-    target_column = config['featurize']['target_column']
-
     logger.info('Load train dataset')
     train_df = pd.read_csv(config['data_split']['trainset_path'])
 
     logger.info('Train model')
     model = train(
         df=train_df,
-        target_column=target_column,
+        target_column=config['featurize']['target_column'],
         estimator_name=estimator_name,
-        param_grid=param_grid,
-        cv=cv
+        param_grid=config['train']['estimators'][estimator_name]['param_grid'],
+        cv=config['train']['cv']
     )
     logger.info(f'Best score: {model.best_score_}')
 

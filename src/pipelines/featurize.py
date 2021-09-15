@@ -3,7 +3,6 @@ import pandas as pd
 from typing import Text
 import yaml
 
-from src.features.features import extract_features
 from src.utils.logs import get_logger
 
 
@@ -22,7 +21,13 @@ def featurize(config_path: Text) -> None:
     dataset = pd.read_csv(config['data_load']['dataset_csv'])
 
     logger.info('Extract features')
-    featured_dataset = extract_features(dataset)
+    dataset['sepal_length_to_sepal_width'] = dataset['sepal_length'] / dataset['sepal_width']
+    dataset['petal_length_to_petal_width'] = dataset['petal_length'] / dataset['petal_width']
+    featured_dataset = dataset[[
+        'sepal_length', 'sepal_width', 'petal_length', 'petal_width',
+        'sepal_length_to_sepal_width', 'petal_length_to_petal_width',
+        'target'
+    ]]
 
     logger.info('Save features')
     features_path = config['featurize']['features_path']
