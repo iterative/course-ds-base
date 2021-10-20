@@ -5,7 +5,7 @@
 ### 1. Fork / Clone this repository
 
 ```bash
-git clone https://gitlab.com/iterative.ai/cse/tutorials/course-ds-base.git
+git clone https://github.com/iterative/course-ds-base.git
 cd course-ds-base
 ```
 
