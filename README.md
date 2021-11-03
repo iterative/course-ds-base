@@ -15,6 +15,7 @@ cd course-ds-base
 Create virtual environment named `dvc-venv` (you may use other name)
 ```bash
 python3 -m venv dvc-venv
+echo "export PYTHONPATH=$PWD" >> dvc-venv/bin/activate
 source dvc-venv/bin/activate
 ```
 Install python libraries
