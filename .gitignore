@@ -5,6 +5,11 @@
 ## OS configs
 .DS_Store
 
+# Project
+data/*
+models/*
+reports/*
+
 # Python
 __pycache__
 .ipynb_checkpoints
