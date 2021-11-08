@@ -43,3 +43,4 @@ evaluate:
   reports_dir: reports
   metrics_file: 'metrics.json'
   confusion_matrix_image: 'confusion_matrix.png'
+  confusion_matrix_data: 'confusion_matrix_data.csv'
