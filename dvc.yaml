@@ -59,9 +59,12 @@ stages:
     - data_split.testset_path
     - evaluate
     - featurize.target_column
-    outs:
+    plots:
     - reports/confusion_matrix.png
-    - reports/confusion_matrix_data.csv
+    - reports/confusion_matrix_data.csv:
+        template: confusion
+        x: predicted
+        y: y_true
     metrics:
     - reports/metrics.json:
         cache: false
