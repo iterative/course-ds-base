@@ -20,7 +20,10 @@ source dvc-venv/bin/activate
 ```
 
 ```bash
-change Scripts instead of bin -for windows user
+# for windows user
+python -m venv dvc-venv
+echo "export PYTHONPATH=$PWD" >> dvc-venv\Scripts\activate
+dvc-venv\Scripts\activate
 ```
 
 Install python libraries
