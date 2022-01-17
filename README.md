@@ -18,6 +18,11 @@ python3 -m venv dvc-venv
 echo "export PYTHONPATH=$PWD" >> dvc-venv/bin/activate
 source dvc-venv/bin/activate
 ```
+
+```bash
+change Scripts instead of bin -for windows user
+```
+
 Install python libraries
 
 ```bash
