@@ -1,5 +1,5 @@
 dvc==2.8.3
-joblib==1.0.1
+joblib==1.2.0
 jupyter==1.0.0
 jupyter_contrib_nbextensions==0.5.1
 matplotlib==3.4.3
