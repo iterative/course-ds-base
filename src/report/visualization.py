@@ -1,6 +1,6 @@
 import itertools
 import matplotlib.pyplot as plt
-import numpy as numpy
+import numpy as np 
 
 def plot_confusion_matrix(cm,
                           target_names,
@@ -33,34 +33,31 @@ def plot_confusion_matrix(cm,
                           normalize    = True,                # show proportions
                           target_names = y_labels_vals,       # list of names of the classes
                           title        = best_estimator_name) # title of graph
-
-  Citiation
-  ---------
+    Citiation
+    ---------
     http://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html
-
     """
+    accuracy = np.trace(cm) / float(np.sum(cm))
+    misclass = 1 - accuracy
 
-  accuracy = np.trace(cm) / float(np.sum(cm))
-  misclass = 1 - accuracy
-
-  if cmap is None:
+    if cmap is None:
       cmap = plt.get_cmap('Blues')
 
-  plt.figure(figsize=(8, 6))
-  plt.imshow(cm, interpolation='nearest', cmap=cmap)
-  plt.title(title)
-  plt.colorbar()
+    plt.figure(figsize=(8, 6))
+    plt.imshow(cm, interpolation='nearest', cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
 
-  if target_names is not None:
+    if target_names is not None:
         tick_marks = np.arange(len(target_names))
         plt.xticks(tick_marks, target_names, rotation=45)
         plt.yticks(tick_marks, target_names)
 
-  if normalize:
+    if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
 
-  thresh = cm.max() / 1.5 if normalize else cm.max() / 2
-  for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+    thresh = cm.max() / 1.5 if normalize else cm.max() / 2
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
       if normalize:
             plt.text(j, i, "{:0.4f}".format(cm[i, j]),
                      horizontalalignment="center",
@@ -70,8 +67,8 @@ def plot_confusion_matrix(cm,
                      horizontalalignment="center",
                      color="white" if cm[i, j] > thresh else "black")
 
-  plt.tight_layout()
-  plt.ylabel('True label')
-  plt.xlabel('Predicted label\naccuracy={:0.4f}; misclass={:0.4f}'.format(accuracy, misclass))
+    plt.tight_layout()
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label\naccuracy={:0.4f}; misclass={:0.4f}'.format(accuracy, misclass))
     
-  return plt.gcf()
+    return plt.gcf()
