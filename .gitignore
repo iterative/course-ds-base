@@ -6,9 +6,7 @@
 .DS_Store
 
 # Project
-data/*
-models/*
-reports/*
+
 
 # Python
 __pycache__
