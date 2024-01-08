@@ -31,16 +31,13 @@ Add Virtual Environment to Jupyter Notebook
 python -m ipykernel install --user --name=dvc-venv
 ``` 
 
-Configure ToC for jupyter notebook (optional)
+Configure ToC for jupyter notebook (optional)/Install the python package
 
 ```bash
 
-```bash
-Install the python package
 
 pip install jupyter_contrib_nbextensions
 
-```bash
 jupyter contrib nbextension install --user
 jupyter nbextension enable toc2/main
 ```
