@@ -14,7 +14,7 @@ def train_model(config_path: Text) -> None:
         config_path {Text}: path to config
     """
 
-    with open(config_path) as conf_file:
+    with open('params.yaml') as conf_file:
         config = yaml.safe_load(conf_file)
 
     logger = get_logger('TRAIN', log_level=config['base']['log_level'])

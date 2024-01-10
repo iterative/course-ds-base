@@ -9,7 +9,7 @@ import yaml
 
 # Load data functions
 
-def data_load(config_file):
+def data_load(config_file: Text) -> None:
     
     # Load configuration file
     with open('params.yaml') as conf_file:

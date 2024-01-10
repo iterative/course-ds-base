@@ -12,15 +12,15 @@ def featurize(config_path: Text) -> None:
         config_path {Text}: path to config
     """
 
-    with open(config_path) as conf_file:
+    with open('params.yaml') as conf_file:
         config = yaml.safe_load(conf_file)
 
     logger = get_logger('FEATURIZE', log_level=config['base']['log_level'])
 
-    logger.info('Load raw data')
+    logger.info('Load the raw data')
     dataset = pd.read_csv(config['data_load']['dataset_csv'])
 
-    logger.info('Extract features')
+    logger.info('Curate by extraction of features from the dataset')
     dataset['sepal_length_to_sepal_width'] = dataset['sepal_length'] / dataset['sepal_width']
     dataset['petal_length_to_petal_width'] = dataset['petal_length'] / dataset['petal_width']
     featured_dataset = dataset[[
@@ -37,7 +37,7 @@ def featurize(config_path: Text) -> None:
 if __name__ == '__main__':
 
     args_parser = argparse.ArgumentParser()
-    args_parser.add_argument('--config', dest='config', required=True)
+    args_parser.add_argument('--config', dest='config', required=True, help="curate dataset")
     args = args_parser.parse_args()
 
     featurize(config_path=args.config)
