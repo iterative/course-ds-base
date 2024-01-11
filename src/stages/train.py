@@ -19,14 +19,14 @@ def train_model(config_path: Text) -> None:
 
     logger = get_logger('TRAIN', log_level=config['base']['log_level'])
 
-    logger.info('Get estimator name')
+    logger.info('Get model/estimator name')
     estimator_name = config['train']['estimator_name']
-    logger.info(f'Estimator: {estimator_name}')
+    logger.info(f'The name of Model/Estimator: {estimator_name}')
 
     logger.info('Load train dataset')
     train_df = pd.read_csv(config['data_split']['trainset_path'])
 
-    logger.info('Train model')
+    logger.info('Train model/estimator')
     model = train(
         df=train_df,
         target_column=config['featurize']['target_column'],
@@ -36,7 +36,7 @@ def train_model(config_path: Text) -> None:
     )
     logger.info(f'Best score: {model.best_score_}')
 
-    logger.info('Save model')
+    logger.info('Trained Model Saved')
     models_path = config['train']['model_path']
     joblib.dump(model, models_path)
 

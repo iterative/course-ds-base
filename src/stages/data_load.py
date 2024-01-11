@@ -23,7 +23,7 @@ def data_load(config_file: Text) -> None:
     dataset.columns = [colname.strip(' (cm)').replace(' ', '_') for colname in dataset.columns.tolist()]
        
     # Save raw data to path contained in params.yaml   
-    dataset.to_csv(config['data']['dataset_csv'], index=False)
+    dataset.to_csv(config['data_load']['dataset_csv'], index=False)
     
 print ("data load completed successfully")
 

@@ -5,7 +5,7 @@
 #   log_level: INFO
 
 # data:
-#   dataset_csv: 'data/raw/iris.csv'
+  # dataset_csv: 'data/raw/iris.csv'
 #   features_path: 'data/processed/featured_iris.csv'
 #   test_size: 0.2
 #   trainset_path: 'data/processed/train_iris.csv'

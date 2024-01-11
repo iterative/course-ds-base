@@ -28,7 +28,7 @@ def data_split(config_path: Text) -> None:
         random_state=config['base']['random_state']
     )
 
-    logger.info('Save train and test sets')
+    logger.info('Save features for training and testing models')
     train_csv_path = config['data_split']['trainset_path']
     test_csv_path = config['data_split']['testset_path']
     train_dataset.to_csv(train_csv_path, index=False)
