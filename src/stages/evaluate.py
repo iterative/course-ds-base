@@ -8,7 +8,7 @@ from sklearn.metrics import confusion_matrix, f1_score
 from typing import Text, Dict
 import yaml
 
-from src.report.visualize import plot_confusion_matrix
+from src.report.visualization import plot_confusion_matrix
 from src.utils.logs import get_logger
 
 
@@ -70,7 +70,7 @@ def evaluate_model(config_path: Text) -> None:
 if __name__ == '__main__':
 
     args_parser = argparse.ArgumentParser()
-    args_parser.add_argument('--config', dest='config', required=True, help="Assist in Evaluation of model")
+    args_parser.add_argument('--config', dest='config', required=True, help="Assist in Evaluation of model using F1 and CM")
     args = args_parser.parse_args()
 
     evaluate_model(config_path=args.config)
