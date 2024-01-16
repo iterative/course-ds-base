@@ -16,3 +16,6 @@ __pycache__
 
 # Venv
 dvc-venv
+
+# ssh keys
+.env/my_key_github_ssh

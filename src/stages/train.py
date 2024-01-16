@@ -39,6 +39,8 @@ def train_model(config_path: Text) -> None:
     logger.info('Trained Model Saved')
     models_path = config['train']['model_path']
     joblib.dump(model, models_path)
+    
+    print(f'the model trained successfully is : {estimator_name}')
 
 
 if __name__ == '__main__':

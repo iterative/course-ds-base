@@ -55,7 +55,7 @@ stages:
           random_state: 42
           log_level: INFO
         data_split:
-          test_size: 0.2
+          test_size: 0.25
           trainset_path: data/processed/train_iris.csv
           testset_path: data/processed/test_iris.csv
         featurize:
@@ -63,25 +63,25 @@ stages:
           target_column: target
     outs:
     - path: data/processed/test_iris.csv
-      md5: b5e45593a772fc66629488e1806505c4
-      size: 1492
+      md5: 8c5b1312048ca4d2b0546483a9a57cf2
+      size: 1806
       isexec: true
     - path: data/processed/train_iris.csv
-      md5: ed8a7e5ba0a211251bdee6c498fe3eb4
-      size: 5724
+      md5: f58c1d4f469306fb11c21f2d595d5ec8
+      size: 5410
       isexec: true
   train:
     cmd: python src/stages/train.py --config=params.yaml
     deps:
     - path: data/processed/test_iris.csv
-      md5: b5e45593a772fc66629488e1806505c4
-      size: 1492
+      md5: 8c5b1312048ca4d2b0546483a9a57cf2
+      size: 1806
     - path: data/processed/train_iris.csv
-      md5: ed8a7e5ba0a211251bdee6c498fe3eb4
-      size: 5724
+      md5: f58c1d4f469306fb11c21f2d595d5ec8
+      size: 5410
     - path: src/stages/train.py
-      md5: c8a0d71871c74e8abfa118bb165588f5
-      size: 1490
+      md5: e755fbd9d95efacf4ded17ebc3c93dc2
+      size: 1564
     params:
       params.yaml:
         base:
@@ -117,17 +117,17 @@ stages:
           model_path: models/model.joblib
     outs:
     - path: models/model.joblib
-      md5: 485ee3fb7877070a51a6b07d07d6244c
+      md5: 13c79f77b394411ecee7736d07b99ad6
       size: 2883
       isexec: true
   evaluate:
     cmd: python src/stages/evaluate.py --config=params.yaml
     deps:
     - path: data/processed/test_iris.csv
-      md5: b5e45593a772fc66629488e1806505c4
-      size: 1492
+      md5: 8c5b1312048ca4d2b0546483a9a57cf2
+      size: 1806
     - path: models/model.joblib
-      md5: 485ee3fb7877070a51a6b07d07d6244c
+      md5: 13c79f77b394411ecee7736d07b99ad6
       size: 2883
     - path: src/stages/evaluate.py
       md5: eab9636bc1bf222815f1941a3abfc99e
@@ -143,10 +143,10 @@ stages:
           confusion_matrix_image: confusion_matrix.png
     outs:
     - path: reports/confusion_matrix.png
-      md5: 64609d4d2fe8d2718531f253d881dde6
-      size: 24999
+      md5: 80f7fb9d71319e2e91c4270cdde87129
+      size: 25798
       isexec: true
     - path: reports/metrics.json
-      md5: d533847a0ca14ca93752b1b1f1df349e
+      md5: be43ae0caac643e8bec0f49ccd28eee9
       size: 32
       isexec: true
