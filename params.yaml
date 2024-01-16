@@ -14,7 +14,7 @@ featurize:
 
 
 data_split:
-  test_size: 0.25
+  test_size: 0.21
   trainset_path: 'data/processed/train_iris.csv'
   testset_path: 'data/processed/test_iris.csv'
 
