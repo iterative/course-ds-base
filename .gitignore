@@ -63,5 +63,6 @@ env/*
 .Trashes
 ehthumbs.db
 
-
+# DVc tracks #
 /file.txt
+/datadir
