@@ -117,7 +117,7 @@ stages:
           model_path: models/model.joblib
     outs:
     - path: models/model.joblib
-      md5: 71bff1ba72a7b22a0dd7bcecd0228081
+      md5: de44a28d8aa5da6d35dc3778e613449d
       size: 2883
       isexec: true
   evaluate:
@@ -127,7 +127,7 @@ stages:
       md5: f953ee125de2bd311a3f846acfac349c
       size: 1575
     - path: models/model.joblib
-      md5: 71bff1ba72a7b22a0dd7bcecd0228081
+      md5: de44a28d8aa5da6d35dc3778e613449d
       size: 2883
     - path: src/stages/evaluate.py
       md5: eab9636bc1bf222815f1941a3abfc99e
