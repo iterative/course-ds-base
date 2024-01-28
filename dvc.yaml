@@ -1,0 +1,64 @@
+# DAG of all the stages in the pipeline
+stages:
+# The first stage of the pipeline
+  data_load:
+    cmd: python src/stages/data_load.py --config=params.yaml
+    deps:
+    - src/stages/data_load.py
+    params:
+    - base
+    - data_load
+    outs:
+    - data/raw/iris.csv
+# The second stage of the pipeline
+  featurize:
+    cmd: python src/stages/featurize.py --config=params.yaml
+    deps:
+    - data/raw/iris.csv
+    - src/stages/featurize.py
+    params:
+    - base
+    - featurize
+    outs:
+    - data/processed/featured_iris.csv
+# The third stage of the pipeline
+  data_split:
+    cmd: python src/stages/data_split.py --config=params.yaml
+    deps:
+    - data/processed/featured_iris.csv
+    - src/stages/data_split.py
+    params:
+    - base
+    - data_split
+    - featurize
+    outs:
+    - data/processed/test_iris.csv
+    - data/processed/train_iris.csv
+# The fourth stage of the pipeline
+  train:
+    cmd: python src/stages/train.py --config=params.yaml
+    deps:
+    - data/processed/test_iris.csv
+    - data/processed/train_iris.csv
+    - src/stages/train.py
+    params:
+    - base
+    - train
+    outs:
+    - models/model.joblib
+# The fifth stage of the pipeline
+  evaluate:
+    cmd: python src/stages/evaluate.py --config=params.yaml
+    deps:
+    - models/model.joblib
+    - data/processed/test_iris.csv
+    - src/stages/evaluate.py
+
+    params:
+    - base
+    - evaluate
+    outs:
+    - reports/metrics.json
+    - reports/confusion_matrix.png
+    
+ 

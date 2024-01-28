@@ -1,0 +1,152 @@
+schema: '2.0'
+stages:
+  data_load:
+    cmd: python src/stages/data_load.py --config=params.yaml
+    deps:
+    - path: src/stages/data_load.py
+      md5: 7e8c530e135da91b31ed742d95b7288c
+      size: 1084
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        data_load:
+          dataset_csv: data/raw/iris.csv
+    outs:
+    - path: data/raw/iris.csv
+      md5: 4224576f0267bf88902f87f0f6200967
+      size: 2757
+      isexec: true
+  featurize:
+    cmd: python src/stages/featurize.py --config=params.yaml
+    deps:
+    - path: data/raw/iris.csv
+      md5: 4224576f0267bf88902f87f0f6200967
+      size: 2757
+    - path: src/stages/featurize.py
+      md5: d1cc78e9ae6c9a43099cf2b43e377975
+      size: 1395
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        featurize:
+          features_path: data/processed/featured_iris.csv
+          target_column: target
+    outs:
+    - path: data/processed/featured_iris.csv
+      md5: 5d03a1564b3038fc35a842f8e4bde491
+      size: 7260
+      isexec: true
+  data_split:
+    cmd: python src/stages/data_split.py --config=params.yaml
+    deps:
+    - path: data/processed/featured_iris.csv
+      md5: 5d03a1564b3038fc35a842f8e4bde491
+      size: 7260
+    - path: src/stages/data_split.py
+      md5: 146a803b3261f01f798da85b49cfe00e
+      size: 1401
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        data_split:
+          test_size: 0.21
+          trainset_path: data/processed/train_iris.csv
+          testset_path: data/processed/test_iris.csv
+        featurize:
+          features_path: data/processed/featured_iris.csv
+          target_column: target
+    outs:
+    - path: data/processed/test_iris.csv
+      md5: f953ee125de2bd311a3f846acfac349c
+      size: 1575
+      isexec: true
+    - path: data/processed/train_iris.csv
+      md5: 0105828cebc2a54ad9a65b6660f3209c
+      size: 5641
+      isexec: true
+  train:
+    cmd: python src/stages/train.py --config=params.yaml
+    deps:
+    - path: data/processed/test_iris.csv
+      md5: f953ee125de2bd311a3f846acfac349c
+      size: 1575
+    - path: data/processed/train_iris.csv
+      md5: 0105828cebc2a54ad9a65b6660f3209c
+      size: 5641
+    - path: src/stages/train.py
+      md5: e755fbd9d95efacf4ded17ebc3c93dc2
+      size: 1564
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        train:
+          cv: 3
+          estimator_name: logreg
+          estimators:
+            logreg:
+              param_grid:
+                C:
+                - 0.001
+                max_iter:
+                - 100
+                solver:
+                - lbfgs
+                multi_class:
+                - multinomial
+            svm:
+              param_grid:
+                C:
+                - 0.1
+                - 1.0
+                kernel:
+                - rbf
+                - linear
+                gamma:
+                - scale
+                degree:
+                - 3
+                - 5
+          model_path: models/model.joblib
+    outs:
+    - path: models/model.joblib
+      md5: de44a28d8aa5da6d35dc3778e613449d
+      size: 2883
+      isexec: true
+  evaluate:
+    cmd: python src/stages/evaluate.py --config=params.yaml
+    deps:
+    - path: data/processed/test_iris.csv
+      md5: f953ee125de2bd311a3f846acfac349c
+      size: 1575
+    - path: models/model.joblib
+      md5: de44a28d8aa5da6d35dc3778e613449d
+      size: 2883
+    - path: src/stages/evaluate.py
+      md5: eab9636bc1bf222815f1941a3abfc99e
+      size: 2492
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        evaluate:
+          reports_dir: reports
+          metrics_file: metrics.json
+          confusion_matrix_image: confusion_matrix.png
+    outs:
+    - path: reports/confusion_matrix.png
+      md5: 7044beeffac0f67cc0401146b26e8f3e
+      size: 25286
+      isexec: true
+    - path: reports/metrics.json
+      md5: d533847a0ca14ca93752b1b1f1df349e
+      size: 32
+      isexec: true
