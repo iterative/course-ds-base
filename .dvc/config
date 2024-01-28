@@ -1,6 +1,8 @@
 [core]
-    remote = localremote
+    remote = myremote-amazon
 ['remote "myremote"']
     url = /tmp/dvc
 ['remote "localremote"']
     url = ../../../localremote
+['remote "myremote-amazon"']
+    url = ../arn:aws:s3:::bee-ml-dataset-jan-24
