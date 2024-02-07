@@ -1,8 +1,10 @@
 [core]
-    remote = myremote-amazon
+    remote = my_s3_remote_2
 ['remote "myremote"']
     url = /tmp/dvc
 ['remote "localremote"']
     url = ../../../localremote
 ['remote "myremote-amazon"']
     url = ../arn:aws:s3:::bee-ml-dataset-jan-24
+['remote "my_s3_remote_2"']
+    url = ../arn:aws:s3:::dvc-projects-research-mrbestnaija1
