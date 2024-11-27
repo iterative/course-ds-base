@@ -6,6 +6,12 @@ import yaml
 
 from src.train.train import train
 from src.utils.logs import get_logger
+import sys
+from pathlib import Path
+
+
+src_path = Path(__file__).parent.parent.parent.resolve()
+sys.path.append(str(src_path))
 
 
 def train_model(config_path: Text) -> None:
