@@ -3,13 +3,14 @@ import pandas as pd
 from typing import Text
 import yaml
 
-from src.utils.logs import get_logger
 import sys
 from pathlib import Path
 
 
 src_path = Path(__file__).parent.parent.parent.resolve()
 sys.path.append(str(src_path))
+
+from src.utils.logs import get_logger
 
 
 def featurize(config_path: Text) -> None:

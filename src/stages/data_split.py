@@ -3,14 +3,14 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from typing import Text
 import yaml
-
-from src.utils.logs import get_logger
 import sys
 from pathlib import Path
 
 
 src_path = Path(__file__).parent.parent.parent.resolve()
 sys.path.append(str(src_path))
+
+from src.utils.logs import get_logger
 
 
 def data_split(config_path: Text) -> None:

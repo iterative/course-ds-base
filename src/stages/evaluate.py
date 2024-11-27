@@ -7,15 +7,15 @@ from sklearn.datasets import load_iris
 from sklearn.metrics import confusion_matrix, f1_score
 from typing import Text, Dict
 import yaml
-
-from src.report.visualize import plot_confusion_matrix
-from src.utils.logs import get_logger
 import sys
 from pathlib import Path
 
 
 src_path = Path(__file__).parent.parent.parent.resolve()
 sys.path.append(str(src_path))
+
+from src.report.visualize import plot_confusion_matrix
+from src.utils.logs import get_logger
 
 
 def convert_to_labels(indexes, labels):
