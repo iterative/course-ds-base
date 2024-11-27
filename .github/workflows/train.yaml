@@ -22,7 +22,8 @@ jobs:
 
           # Generate metrics report
           git fetch --prune
-          dvc metrics diff --show-md master > report.md
+          echo "## MODEL METRICS" > report.md
+          dvc metrics diff --md >> report.md
 
           ## Add figure to the report
           echo '![](./confusion_matrix.png "Confusion Matrix")' >> report.md
