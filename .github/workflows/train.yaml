@@ -27,5 +27,4 @@ jobs:
 
           ## Add figure to the report
           echo '![](./confusion_matrix.png "Confusion Matrix")' >> report.md
-          cml publish ./confusion_matrix.png --md >> report.md
           cml comment create report.md
